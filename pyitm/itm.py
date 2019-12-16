@@ -45,24 +45,6 @@ class PropType:
         self.kwx = 0
         self.mdp = 0
 
-    def dump(self):
-        print("#### - PropType - ####")
-        print("aref: ", self.aref)
-        print("dist: ", self.dist)
-        print("hg: ", self.hg)
-        print("wn: ", self.wn)
-        print("dh: ", self.dh)
-        print("ens: ", self.ens)
-        print("gme: ", self.gme)
-        print("zgndreal: ", self.zgndreal)
-        print("zgndimag: ", self.zgndimag)
-        print("he: ", self.he)
-        print("dl: ", self.dl)
-        print("the: ", self.the)
-        print("kwx: ", self.kwx)
-        print("mdp: ", self.mdp)
-        print("--------------------")
-
 
 class PropvType:
     """
@@ -79,14 +61,6 @@ class PropvType:
         self.lvar = int()
         self.mdvar = int()
         self.klim = int()
-
-    def dump(self):
-        print("#### - PropvType - ####")
-        print("sgc: ", self.sgc)
-        print("lvar: ", self.lvar)
-        print("mdvar: ", self.mdvar)
-        print("klim: ", self.klim)
-        print("--------------------")
 
 
 class PropaType:
@@ -121,22 +95,6 @@ class PropaType:
         self.dls = [float(), float()]
         self.dla = float()
         self.tha = float()
-
-    def dump(self):
-        print("#### - PropaType - ####")
-        print("dlsa: ", self.dlsa)
-        print("dx: ", self.dx)
-        print("ael: ", self.ael)
-        print("ak1: ", self.ak1)
-        print("ak2: ", self.ak2)
-        print("aed: ", self.aed)
-        print("emd: ", self.emd)
-        print("aes: ", self.aes)
-        print("ems: ", self.ems)
-        print("dls: ", self.dls)
-        print("dla: ", self.dla)
-        print("tha: ", self.tha)
-        print("--------------------")
 
 
 def qlrps(fmhz, zsys, en0, ipol, eps, sgm, prop):
