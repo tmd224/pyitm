@@ -2,7 +2,7 @@ import math
 
 
 def deg2rad(d):
-    return d * 3.1415926535897 / 180.0
+    return d * math.pi / 180.0
 
 
 def curve(c1, c2, x1, x2, x3, de):
@@ -116,7 +116,7 @@ def ahd(td):
     c = (-4.343, -1.086, 2.171)
     if td <= 10E3:
         i = 0
-    elif td <= 70E3:
+    elif 10E3 < td <= 70E3:
         i = 1
     else:
         i = 2
