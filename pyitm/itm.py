@@ -97,6 +97,20 @@ class PropaType:
         self.tha = float()
 
 
+class InputError(Exception):
+    """
+    Custom Exception raised for errors in the input.
+
+    Attributes:
+        expression -- input expression in which the error occurred
+        message -- explanation of the error
+    """
+
+    def __init__(self, expression, message):
+        self.expression = expression
+        self.message = message
+
+
 def qlrps(fmhz, zsys, en0, ipol, eps, sgm, prop):
     """
     Function to prepare parameters for area prediction mode.  Prior to calling
@@ -105,9 +119,10 @@ def qlrps(fmhz, zsys, en0, ipol, eps, sgm, prop):
     Args:
         fmhz (float): Frequency of signal in MHz
         zsys (float): Avg elevation above sea level of the system; if 0,
-        en0 will be interpreted as ENS
+            en0 will be interpreted as ENS
         en0 (float): Minimum monthly mean surface refractivity reduced to
-        sea level; if it is desired to introduce ENS instead, then set ZSYS=0.
+            sea level; if it is desired to introduce ENS instead,
+            then set ZSYS=0.
         ipol (int): Antenna polarization; 0 - horizontal, 1 - vertical
         eps (float): Ground permitivity
         sgm (float): Ground conductance
@@ -786,272 +801,6 @@ def avar(zzt, zzl, zzc, prop, propv):
     return avarv
 
 
-def hzns(pfl, prop):
-    """
-
-    Args:
-        pfl:
-        prop:
-
-    Returns:
-        None
-    """
-    np = int(pfl[0])
-    xi = pfl[1]
-    za = pfl[2] + prop.hg[0]
-    zb = pfl[np + 2] + prop.hg[1]
-    qc = 0.5 * prop.gme
-    q = qc * prop.dist
-    prop.the[1] = (zb - za) / prop.dist
-    prop.the[0] = prop.the[1] - q
-    prop.the[1] = -prop.the[1] - q
-    prop.dl[0] = prop.dist
-    prop.dl[1] = prop.dist
-    if np >= 2:
-        sa = 0.0
-        sb = prop.dist
-        wq = True
-        for i in range(1, np):
-            sa += xi
-            sb -= xi
-            q = pfl[i + 2] - (qc * sa + prop.the[0]) * sa - za
-            if q > 0.0:
-                prop.the[0] += q / sa
-                prop.dl[0] = sa
-                wq = False
-
-            if not wq:
-                q = pfl[i + 2] - (qc * sb + prop.the[1]) * sb - zb
-                if q > 0.0:
-                    prop.the[1] += q / sb
-                    prop.dl[1] = sb
-
-
-def z1sq1(z, x1, x2, z0, zn):
-    """
-
-    Args:
-        z (list):
-        x1 (float):
-        x2 (float):
-        z0 (float):
-        zn (float):
-
-    Returns:
-        z0 (float):
-        sn (float):
-    """
-    xn = z[0]
-    xa = int(fortran_dim(x1 / z[1], 0.0))
-    xb = xn - int(fortran_dim(xn, x2 / z[1]))
-    if xb <= xa:
-        xa = fortran_dim(xa, 1.0)
-        xb = xn - fortran_dim(xn, xb + 1.0)
-
-    ja = int(xa)
-    jb = int(xb)
-    n = jb - ja
-    xa = xb - xa
-    x = -0.5 * xa
-    xb += x
-    a = 0.5 * (z[ja + 2] + z[jb + 2])
-    b = 0.5 * (z[ja + 2] - z[jb + 2]) * x
-    for i in range(2, n+1):
-        ja += 1
-        x += 1.0
-        a += z[ja + 2]
-        b += z[ja + 2] * x
-
-    a /= xa
-    b = b * 12.0 / ((xa * xa + 2.0) * xa)
-    z0 = a - b * xb
-    zn = a + b * (xn - xb)
-
-    return z0, zn
-
-
-def qtile(nn, a, ir):
-    """
-
-    Args:
-        nn (int):
-        a (list):
-        ir (int):
-
-    Returns:
-        q (float):
-    """
-    m = 0
-    n = nn
-    i0 = 0
-    j1 = 0
-    q = 0.0
-    done = False
-    goto10 = True
-    k = min(max(0, ir), n)
-    while not done:
-        if goto10:
-            q = a[k]
-            i0 = m
-            j1 = n
-
-        i = i0
-        while i <= n and a[i] >= q:
-            i += 1
-
-        if i > n:
-            i = n
-        j = j1
-
-        while j >= m and a[j] <= q:
-            j -= 1
-
-        if j < m:
-            j = m
-
-        if i < j:
-            r = a[i]
-            a[i] = a[j]
-            a[j] = r
-            i0 = i + 1
-            j1 = j - 1
-            goto10 = False
-
-        elif i < k:
-            a[k] = a[i]
-            a[i] = q
-            m = i + 1
-            goto10 = True
-
-        elif j > k:
-            a[k] = a[j]
-            a[j] = q
-            n = j - 1
-            goto10 = True
-
-        else:
-            done = True
-
-    return q
-
-
-def d1thx(pfl, x1, x2):
-    """
-
-    Args:
-        pfl (list):
-        x1 (float):
-        x2 (float):
-
-    Returns:
-        d1thxv (float):
-    """
-    np = int(pfl[0])
-    xa = x1 / pfl[1]
-    xb = x2 / pfl[1]
-    d1thxv = 0.0
-    if xb - xa < 2.0:  # exit out
-        return d1thxv
-
-    ka = int((0.1 * (xb - xa + 8.0)))
-    ka = min(max(4, ka), 25)
-    n = 10 * ka - 5
-    kb = n - ka + 1
-    sn = n - 1
-    s = list()
-    s[0] = sn
-    s[1] = 1.0
-    xb = (xb - xa) / sn
-    k = int(xa + 1.0)
-    xa -= float(k)
-    for j in range(0, n):
-        while xa > 0.0 and k < np:
-            xa -= 1.0
-            k += 1
-        s[j + 2] = pfl[k + 2] + (pfl[k + 2] - pfl[k + 1]) * xa
-        xa = xa + xb
-
-    xa, xb = z1sq1(s, 0.0, sn, xa, xb)
-    xb = (xb - xa) / sn
-    for j in range(0, n):
-        s[j + 2] -= xa
-        xa = xa + xb
-
-    d1thxv = qtile(n - 1, s[2:], ka - 1) - qtile(n - 1, s[2:], kb - 1)
-    d1thxv /= 1.0 - 0.8 * math.exp(-(x2 - x1) / 50.0e3)
-    # delete[] s
-    return d1thxv
-
-
-def qlrpfl(pfl, klimx, mdvarx, prop, propa, propv):
-    """
-
-    Args:
-        pfl (list):
-        klimx (int):
-        mdvarx (int):
-        prop (PropType):
-        propa (PropaType):
-        propv (PropvType):
-
-    Returns:
-        None
-    """
-    xl = [float(), float()]
-    za = float()
-    zb = float()
-    q = float()
-    prop.dist = pfl[0] * pfl[1]
-    np = int(pfl[0])
-    hzns(pfl, prop)
-    for j in range(0, 2):
-        xl.append(min(15.0 * prop.hg[j], 0.1 * prop.dl[j]))
-
-    xl[1] = prop.dist - xl[1]
-    prop.dh = d1thx(pfl, xl[0], xl[1])
-    if (prop.dl[0] + prop.dl[1]) > (1.5 * prop.dist):
-        za, zb = z1sq1(pfl, xl[0], xl[1], za, zb)
-        prop.he[0] = prop.hg[0] + fortran_dim(pfl[2], za)
-        prop.he[1] = prop.hg[1] + fortran_dim(pfl[np + 2], zb)
-        for j in range(0, 2):
-            prop.dl[j] = math.sqrt(2.0 * prop.he[j] / prop.gme) * \
-                         math.exp(-0.07 * math.sqrt(prop.dh /
-                                                    max(prop.he[j], 5.0)))
-
-        q = prop.dl[0] + prop.dl[1]
-
-        if q <= prop.dist:
-            q = math.pow(prop.dist / q, 2.0)
-            for j in range(0, 2):
-                prop.he[j] *= q
-                prop.dl[j] = math.sqrt(2.0 * prop.he[j] / prop.gme) * \
-                             math.exp(-0.07 * math.sqrt(prop.dh /
-                                                        max(prop.he[j], 5.0)))
-
-        for j in range(0, 2):
-            q = math.sqrt(2.0 * prop.he[j] / prop.gme)
-            prop.the[j] = (0.65 * prop.dh *
-                           (q / prop.dl[j] - 1.0) - 2.0 * prop.he[j]) / q
-
-    else:
-        za, q = z1sq1(pfl, xl[0], 0.9 * prop.dl[0], za, q)
-        q, zb = z1sq1(pfl, prop.dist - 0.9 * prop.dl[1], xl[1], q, zb)
-        prop.he[0] = prop.hg[0] + fortran_dim(pfl[2], za)
-        prop.he[1] = prop.hg[1] + fortran_dim(pfl[np + 2], zb)
-
-    prop.mdp = -1
-    propv.lvar = max(propv.lvar, 3)
-    if mdvarx >= 0:
-        propv.mdvar = mdvarx
-        propv.lvar = max(propv.lvar, 4)
-
-    if klimx > 0:
-        propv.klim = klimx
-        propv.lvar = 5
-
-    lrprop(0.0, prop, propa)
-
-
 def area(ModVar, deltaH, tht_m, rht_m, dist_km, TSiteCriteria, RSiteCriteria,
          eps_dielect, sgm_conductivity, eno_ns_surfref, frq_mhz, radio_climate,
          pol, pctTime, pctLoc, pctConf):
@@ -1059,34 +808,47 @@ def area(ModVar, deltaH, tht_m, rht_m, dist_km, TSiteCriteria, RSiteCriteria,
 
     Args:
         ModVar (int): 0 - Single: pctConf is "Time/Situation/Location",
-            pctTime, pctLoc not used
+                        pctTime, pctLoc not used
                       1 - Individual: pctTime is "Situation/Location",
                         pctConf is "Confidence", pctLoc not used
                       2 - Mobile: pctTime is "Time/Locations (Reliability)",
                         pctConf is "Confidence", pctLoc not used
                       3 - Broadcast: pctTime is "Time", pctLoc is "Location",
                         pctConf is "Confidence"
-        deltaH (float):
-        tht_m (float):
-        rht_m (float):
-        dist_km (float):
-        TSiteCriteria (int): 0 - random, 1 - careful, 2 - very careful
-        RSiteCriteria (int): 0 - random, 1 - careful, 2 - very careful
-        eps_dielect (float):
-        sgm_conductivity (float):
-        eno_ns_surfref (float):
-        frq_mhz (float):
+        deltaH (float): Terrain irregularity parameter [m].  This is the
+            interdecile range of terrain elevation between Tx/Rx sites.  For
+            average terrain use 90.  Other recommendations are:
+            Flat (or smooth water): 0; Plains: 30; Hills: 90; Mountains:
+            200; Rugged Mountains: 500
+        tht_m (float): Transmitter antenna height [m].  The height is
+            determined by the center of the radiating element above ground.
+            [0.5 - 3000]
+        rht_m (float): Receiver antenna height [m].  The height is
+            determined by the center of the radiating element above ground.
+            [0.5 - 3000]
+        dist_km (float): Distance between antennas [km]. The model is valid
+            for distances in the range 1km - 2000km.
+        TSiteCriteria (int): Tx Antenna deployment sitting criteria:
+            0 - random, 1 - careful, 2 - very careful
+        RSiteCriteria (int): Rx Antenna deployment sitting criteria:
+            0 - random, 1 - careful, 2 - very careful
+        eps_dielect (float): Relative Permittivity of the earth
+        sgm_conductivity (float): Conductivity of the earth
+        eno_ns_surfref (float): Surface Refractivity [250 - 400 N-units]
+        frq_mhz (float): Carrier frequency [MHz]; The model is valid for
+            frequencies in the range 20MHz - 20GHz
         radio_climate (int): 1-Equatorial, 2-Continental Subtropical,
                              3-Maritime Tropical, 4-Desert, 5-Continental
                              Temperate, 6-Maritime Temperate, Over Land,
                              7-Maritime Temperate, Over Sea
-        pol (int): Antenna polarization; 0-Horizontal, 1-Vertical
-        pctTime (float): .01 to .99
-        pctLoc (float): .01 to .99
-        pctConf (float): .01 to .99
+        pol (int): Antenna polarization; 0-Horizontal, 1-Vertical.  It is
+            assumed that both antenna elements have the same polarization.
+        pctTime (float): Time Reliability Percentage [.01 to .99]
+        pctLoc (float): Location Reliability Percentage [.01 to .99]
+        pctConf (float): Confidence Interval Percentage [.01 to .99]
 
     Returns:
-        dbloss (float):
+        dbloss (float): RF Propogation loss [dB]
         errnum (int): 0- No Error.
                       1- Warning: Some parameters are nearly out of range.
                                   Results should be used with caution.
@@ -1115,6 +877,64 @@ def area(ModVar, deltaH, tht_m, rht_m, dist_km, TSiteCriteria, RSiteCriteria,
     prop.kwx = 0
     ivar = ModVar
     ipol = pol
+
+    # argument checking
+    if frq_mhz < 20 or frq_mhz > 20000:
+        raise InputError("frq_mhz={}MHz".format(frq_mhz),
+                         "ITM model is only valid for frequencies 20MHz - "
+                         "20GHz")
+
+    if dist_km < 1.0 or dist_km > 2000:
+        raise InputError("dist_km={}km".format(dist_km),
+                         "ITM model is only valid for distances 1km - 2000km")
+
+    if tht_m < 0.5 or tht_m > 3000:
+        raise InputError("tht_m:{}m".format(tht_m),
+                         "ITM model is only valid for antenna heights 0.5m - "
+                         "3000m")
+
+    if rht_m < 0.5 or rht_m > 3000:
+        raise InputError("rht_m:{}m".format(rht_m),
+                         "ITM model is only valid for antenna heights 0.5m - "
+                         "3000m")
+
+    if ipol not in [0, 1]:
+        raise InputError("ipol={}".format(ipol),
+                         "Invalid antenna polarization code {}.  Valid "
+                         "codes: [0, 1]")
+
+    if eno_ns_surfref < 250 or eno_ns_surfref > 400:
+        raise InputError("eno_ns_surfref={}".format(eno_ns_surfref),
+                         "Invalid Surface Refractivity Valid range: ["
+                         "250 - 400")
+
+    if radio_climate not in range(1, 8):
+        raise InputError("radio_climate={}".format(radio_climate),
+                         "Invalid radio climate parameter. "
+                         "Valid values: [{}]".format(range(0, 8)))
+
+    if TSiteCriteria not in range(0, 3):
+        raise InputError("TSiteCriteria={}".format(TSiteCriteria),
+                         "Invalid Tx sitting criterial. Valid values: [{}]"
+                         .format(TSiteCriteria, range(0, 4)))
+
+    if RSiteCriteria not in range(0, 3):
+        raise InputError("RSiteCriteria={}".format(RSiteCriteria),
+                         "Invalid Rx sitting criterial. Valid values: [{}]"
+                         .format(RSiteCriteria, range(0, 4)))
+
+    if pctTime < 0.01 or pctTime > 0.99:
+        raise InputError("pctTime: {}".format(pctTime),
+                         "Invalid pctTime. Valid range: [0.01 - 0.99]")
+
+    if pctLoc < 0.01 or pctLoc > 0.99:
+        raise InputError("pctLoc: {}".format(pctLoc),
+                         "Invalid pctLoc. Valid range: [0.01 - 0.99]")
+
+    if pctConf < 0.01 or pctConf > 0.99:
+        raise InputError("pctConf: {}".format(pctConf),
+                         "Invalid pctConf. Valid range: [0.01 - 0.99]")
+
     qlrps(frq_mhz, 0.0, eno, ipol, eps, sgm, prop)
     # prop.dump()
     qlra(kst, propv.klim, ivar, prop, propv)
@@ -1152,27 +972,38 @@ def ITMAreadBLoss(ModVar, deltaH, tht_m, rht_m, dist_km, TSiteCriteria,
                         pctConf is "Confidence", pctLoc not used
                       3 - Broadcast: pctTime is "Time", pctLoc is "Location",
                         pctConf is "Confidence"
-        deltaH (float):
-        tht_m (float):
-        rht_m (float):
-        dist_km (float):
-        TSiteCriteria (int): 0 - random, 1 - careful, 2 - very careful
-        RSiteCriteria (int): 0 - random, 1 - careful, 2 - very careful
-        eps_dielect (float):
-        sgm_conductivity (float):
-        eno_ns_surfref (float):
-        frq_mhz (float):
+        deltaH (float): Terrain irregularity parameter [m].  This is the
+            interdecile range of terrain elevation between Tx/Rx sites.  For
+            average terrain use 90.  Other recommendations are:
+            Flat (or smooth water): 0; Plains: 30; Hills: 90; Mountains:
+            200; Rugged Mountains: 500
+        tht_m (float): Transmitter antenna height [m].  The height is
+            determined by the center of the radiating element above ground.
+        rht_m (float): Receiver antenna height [m].  The height is
+            determined by the center of the radiating element above ground.
+        dist_km (float): Distance between antennas [km]. The model is valid
+            for distances in the range 1km - 2000km.
+        TSiteCriteria (int): Tx Antenna deployment sitting criteria:
+            0 - random, 1 - careful, 2 - very careful
+        RSiteCriteria (int): Rx Antenna deployment sitting criteria:
+            0 - random, 1 - careful, 2 - very careful
+        eps_dielect (float): Relative Permittivity of the earth
+        sgm_conductivity (float): Conductivity of the earth
+        eno_ns_surfref (float): Surface Refractivity [250 - 400 N-units]
+        frq_mhz (float): Carrier frequency [MHz]; The model is valid for
+            frequencies in the range 20MHz - 20GHz
         radio_climate (int): 1-Equatorial, 2-Continental Subtropical,
                              3-Maritime Tropical, 4-Desert, 5-Continental
                              Temperate, 6-Maritime Temperate, Over Land,
                              7-Maritime Temperate, Over Sea
-        pol (int): Antenna polarization; 0-Horizontal, 1-Vertical
-        pctTime (float): .01 to .99
-        pctLoc (float): .01 to .99
-        pctConf (float): .01 to .99
+        pol (int): Antenna polarization; 0-Horizontal, 1-Vertical.  It is
+            assumed that both antenna elements have the same polarization.
+        pctTime (float): Time Reliability Percentage [.01 to .99]
+        pctLoc (float): Location Reliability Percentage [.01 to .99]
+        pctConf (float): Confidence Interval Percentage [.01 to .99]
 
     Returns:
-        dbloss (float):
+        dbloss (float): RF propogation loss [dB]
     """
     dbloss, _ = area(ModVar, deltaH, tht_m, rht_m, dist_km, TSiteCriteria,
                      RSiteCriteria, eps_dielect, sgm_conductivity,
@@ -1181,5 +1012,5 @@ def ITMAreadBLoss(ModVar, deltaH, tht_m, rht_m, dist_km, TSiteCriteria,
     return dbloss
 
 
-def ITMDLLVersion():
+def ITMVersion():
     return ITMVERSION

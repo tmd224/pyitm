@@ -1,4 +1,5 @@
-from pyitm.itm import ITMAreadBLoss
+import pytest
+from pyitm.itm import ITMAreadBLoss, InputError
 
 """
 This test module validates the model against the examples listed in Appendix A
@@ -181,3 +182,217 @@ def test_areamode_3():
                                    frq_mhz, radio_climate, pol, pctTime, pctLoc,
                                    c)
             assert round(dbloss, 1) == RESULTS[d][c]
+
+
+def test_freq_exception():
+    """"
+    Test invalid frequency
+    """
+    CONF = 0.90
+    ModVar = 2
+    deltaH = 200.0
+    tht_m = 10.0
+    rht_m = 1.0
+    TSiteCriteria = 1
+    RSiteCriteria = 0
+    radio_climate = 5
+    pol = 1
+    pctTime = 0.7
+    pctLoc = 0.5
+    dist_km = 10.0
+    frq_mhz = 10.0
+
+    pytest.raises(InputError, ITMAreadBLoss,ModVar, deltaH, tht_m, rht_m,
+                  dist_km, TSiteCriteria, RSiteCriteria, EPS, SGM, EN0,
+                  frq_mhz, radio_climate, pol, pctTime, pctLoc,
+                  CONF)
+
+    frq_mhz = 21000.0
+    pytest.raises(InputError, ITMAreadBLoss,ModVar, deltaH, tht_m, rht_m,
+                  dist_km, TSiteCriteria, RSiteCriteria, EPS, SGM, EN0,
+                  frq_mhz, radio_climate, pol, pctTime, pctLoc,
+                  CONF)
+
+
+def test_dist_exception():
+    """
+    Test invalid distance
+    """
+    CONF = 0.90
+    ModVar = 2
+    deltaH = 200.0
+    tht_m = 10.0
+    rht_m = 1.0
+    TSiteCriteria = 1
+    RSiteCriteria = 0
+    radio_climate = 5
+    pol = 1
+    pctTime = 0.7
+    pctLoc = 0.5
+    dist_km = 0.5
+    frq_mhz = 100.0
+
+    pytest.raises(InputError, ITMAreadBLoss,ModVar, deltaH, tht_m, rht_m,
+                  dist_km, TSiteCriteria, RSiteCriteria, EPS, SGM, EN0,
+                  frq_mhz, radio_climate, pol, pctTime, pctLoc,
+                  CONF)
+
+    dist_km = 2001.0
+    pytest.raises(InputError, ITMAreadBLoss,ModVar, deltaH, tht_m, rht_m,
+                  dist_km, TSiteCriteria, RSiteCriteria, EPS, SGM, EN0,
+                  frq_mhz, radio_climate, pol, pctTime, pctLoc,
+                  CONF)
+
+def test_antenna_height_exception():
+    """
+    Test invalid distance
+    """
+    CONF = 0.90
+    ModVar = 2
+    deltaH = 200.0
+    TSiteCriteria = 1
+    RSiteCriteria = 0
+    radio_climate = 5
+    pol = 1
+    pctTime = 0.7
+    pctLoc = 0.5
+    dist_km = 10.0
+    frq_mhz = 100.0
+
+    tht_m = 0.25
+    rht_m = 1.0
+    pytest.raises(InputError, ITMAreadBLoss,ModVar, deltaH, tht_m, rht_m,
+                  dist_km, TSiteCriteria, RSiteCriteria, EPS, SGM, EN0,
+                  frq_mhz, radio_climate, pol, pctTime, pctLoc,
+                  CONF)
+
+    tht_m = 3001.0
+    rht_m = 1.0
+    pytest.raises(InputError, ITMAreadBLoss,ModVar, deltaH, tht_m, rht_m,
+                  dist_km, TSiteCriteria, RSiteCriteria, EPS, SGM, EN0,
+                  frq_mhz, radio_climate, pol, pctTime, pctLoc,
+                  CONF)
+
+    tht_m = 1.0
+    rht_m = 0.25
+    pytest.raises(InputError, ITMAreadBLoss,ModVar, deltaH, tht_m, rht_m,
+                  dist_km, TSiteCriteria, RSiteCriteria, EPS, SGM, EN0,
+                  frq_mhz, radio_climate, pol, pctTime, pctLoc,
+                  CONF)
+
+    tht_m = 1.0
+    rht_m = 3001.0
+    pytest.raises(InputError, ITMAreadBLoss,ModVar, deltaH, tht_m, rht_m,
+                  dist_km, TSiteCriteria, RSiteCriteria, EPS, SGM, EN0,
+                  frq_mhz, radio_climate, pol, pctTime, pctLoc,
+                  CONF)
+
+
+def test_polarization_exception():
+    """
+    Test invalid distance
+    """
+    CONF = 0.90
+    ModVar = 2
+    deltaH = 200.0
+    tht_m = 10.0
+    rht_m = 1.0
+    TSiteCriteria = 1
+    RSiteCriteria = 0
+    radio_climate = 5
+    pctTime = 0.7
+    pctLoc = 0.5
+    dist_km = 0.5
+    frq_mhz = 100.0
+
+    pol = 2
+    pytest.raises(InputError, ITMAreadBLoss,ModVar, deltaH, tht_m, rht_m,
+                  dist_km, TSiteCriteria, RSiteCriteria, EPS, SGM, EN0,
+                  frq_mhz, radio_climate, pol, pctTime, pctLoc,
+                  CONF)
+
+
+def test_surface_refractivity_exception():
+    """
+    Test invalid distance
+    """
+    CONF = 0.90
+    ModVar = 2
+    deltaH = 200.0
+    tht_m = 10.0
+    rht_m = 1.0
+    TSiteCriteria = 1
+    RSiteCriteria = 0
+    radio_climate = 5
+    pol = 1
+    pctTime = 0.7
+    pctLoc = 0.5
+    dist_km = 0.5
+    frq_mhz = 100.0
+
+    EN0_NS = 249
+    pytest.raises(InputError, ITMAreadBLoss,ModVar, deltaH, tht_m, rht_m,
+                  dist_km, TSiteCriteria, RSiteCriteria, EPS, SGM, EN0_NS,
+                  frq_mhz, radio_climate, pol, pctTime, pctLoc,
+                  CONF)
+
+    EN0_NS = 401
+    pytest.raises(InputError, ITMAreadBLoss,ModVar, deltaH, tht_m, rht_m,
+                  dist_km, TSiteCriteria, RSiteCriteria, EPS, SGM, EN0_NS,
+                  frq_mhz, radio_climate, pol, pctTime, pctLoc,
+                  CONF)
+
+
+def test_climate_exception():
+    """
+    Test invalid distance
+    """
+    CONF = 0.90
+    ModVar = 2
+    deltaH = 200.0
+    tht_m = 10.0
+    rht_m = 1.0
+    TSiteCriteria = 1
+    RSiteCriteria = 0
+    pctTime = 0.7
+    pctLoc = 0.5
+    dist_km = 0.5
+    frq_mhz = 100.0
+    pol = 1
+
+    radio_climate = 8
+    pytest.raises(InputError, ITMAreadBLoss,ModVar, deltaH, tht_m, rht_m,
+                  dist_km, TSiteCriteria, RSiteCriteria, EPS, SGM, EN0,
+                  frq_mhz, radio_climate, pol, pctTime, pctLoc,
+                  CONF)
+
+
+def test_site_criteria_exception():
+    """
+    Test invalid distance
+    """
+    CONF = 0.90
+    ModVar = 2
+    deltaH = 200.0
+    tht_m = 10.0
+    rht_m = 1.0
+    pctTime = 0.7
+    pctLoc = 0.5
+    dist_km = 0.5
+    frq_mhz = 100.0
+    pol = 1
+    radio_climate = 8
+
+    TSiteCriteria = 3
+    RSiteCriteria = 0
+    pytest.raises(InputError, ITMAreadBLoss,ModVar, deltaH, tht_m, rht_m,
+                  dist_km, TSiteCriteria, RSiteCriteria, EPS, SGM, EN0,
+                  frq_mhz, radio_climate, pol, pctTime, pctLoc,
+                  CONF)
+
+    TSiteCriteria = 1
+    RSiteCriteria = 3
+    pytest.raises(InputError, ITMAreadBLoss,ModVar, deltaH, tht_m, rht_m,
+                  dist_km, TSiteCriteria, RSiteCriteria, EPS, SGM, EN0,
+                  frq_mhz, radio_climate, pol, pctTime, pctLoc,
+                  CONF)

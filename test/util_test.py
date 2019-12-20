@@ -1,5 +1,6 @@
 import math
 from pyitm.util import deg2rad, qerf, fortran_dim, fht, h0f, ahd
+from pyitm.itm import ITMVersion
 
 
 def test_deg2rad():
@@ -29,3 +30,6 @@ def test_ahd():
     assert round(ahd(100E3), 10) == 112.4945611845
     assert round(ahd(50E3), 10) == 103.4497207831
 
+
+def test_version():
+    assert ITMVersion() == 7.0
