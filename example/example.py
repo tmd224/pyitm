@@ -27,9 +27,8 @@ if __name__ == "__main__":
     SGM = 0.005
     EN0 = 301.0
 
-    dbloss = ITMAreadBLoss(ModVar, deltaH, tht_m, rht_m,
-                           dist_km, TSiteCriteria, RSiteCriteria, EPS, SGM,
-                           EN0, frq_mhz, radio_climate, pol, pctTime, pctLoc,
-                           CONF)
+    dbloss = ITMAreadBLoss(ModVar, deltaH, tht_m, rht_m, dist_km,
+                           TSiteCriteria, RSiteCriteria, EPS, SGM, EN0,
+                           frq_mhz, radio_climate, pol, pctTime, pctLoc, CONF)
 
-    print("dbloss: {}dB".format(round(dbloss,2)))
+    print("dbloss: {}dB".format(round(dbloss, 2)))

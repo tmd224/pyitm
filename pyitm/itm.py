@@ -964,19 +964,18 @@ def ITMAreadBLoss(ModVar, deltaH, tht_m, rht_m, dist_km, TSiteCriteria,
     """
 
     Args:
-        ModVar (int): 0 - Single: pctConf is "Time/Situation/Location",
-                        pctTime, pctLoc not used
-                      1 - Individual: pctTime is "Situation/Location",
-                        pctConf is "Confidence", pctLoc not used
-                      2 - Mobile: pctTime is "Time/Locations (Reliability)",
-                        pctConf is "Confidence", pctLoc not used
-                      3 - Broadcast: pctTime is "Time", pctLoc is "Location",
-                        pctConf is "Confidence"
+        ModVar (int): Mode of variability. 0 - [Single] pctConf is
+            "Time/Situation/Location", pctTime, pctLoc not used.  1 - [
+            Individual] pctTime is "Situation/Location", pctConf is
+            "Confidence", pctLoc not used.  2 - [Mobile] pctTime is
+            "Time/Locations (Reliability)", pctConf is "Confidence", pctLoc
+            not used.  3 - [Broadcast] pctTime is "Time", pctLoc is
+            "Location", pctConf is "Confidence".
         deltaH (float): Terrain irregularity parameter [m].  This is the
             interdecile range of terrain elevation between Tx/Rx sites.  For
             average terrain use 90.  Other recommendations are:
             Flat (or smooth water): 0; Plains: 30; Hills: 90; Mountains:
-            200; Rugged Mountains: 500
+            200; Rugged Mountains: 500.
         tht_m (float): Transmitter antenna height [m].  The height is
             determined by the center of the radiating element above ground.
         rht_m (float): Receiver antenna height [m].  The height is

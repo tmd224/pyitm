@@ -1,0 +1,884 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyitm package &mdash; pyitm 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> pyitm
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyitm</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>pyitm package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/_api/pyitm.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pyitm-package">
+<h1>pyitm package<a class="headerlink" href="#pyitm-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pyitm.itm">
+<span id="pyitm-itm-module"></span><h2>pyitm.itm module<a class="headerlink" href="#module-pyitm.itm" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyitm.itm.ITMAreadBLoss">
+<code class="sig-prename descclassname">pyitm.itm.</code><code class="sig-name descname">ITMAreadBLoss</code><span class="sig-paren">(</span><em class="sig-param">ModVar</em>, <em class="sig-param">deltaH</em>, <em class="sig-param">tht_m</em>, <em class="sig-param">rht_m</em>, <em class="sig-param">dist_km</em>, <em class="sig-param">TSiteCriteria</em>, <em class="sig-param">RSiteCriteria</em>, <em class="sig-param">eps_dielect</em>, <em class="sig-param">sgm_conductivity</em>, <em class="sig-param">eno_ns_surfref</em>, <em class="sig-param">frq_mhz</em>, <em class="sig-param">radio_climate</em>, <em class="sig-param">pol</em>, <em class="sig-param">pctTime</em>, <em class="sig-param">pctLoc</em>, <em class="sig-param">pctConf</em><span class="sig-paren">)</span><a class="headerlink" href="#pyitm.itm.ITMAreadBLoss" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ModVar</strong> (<em>int</em>) – Mode of variability. 0 - [Single] pctConf is
+“Time/Situation/Location”, pctTime, pctLoc not used.  1 - [
+Individual] pctTime is “Situation/Location”, pctConf is
+“Confidence”, pctLoc not used.  2 - [Mobile] pctTime is
+“Time/Locations (Reliability)”, pctConf is “Confidence”, pctLoc
+not used.  3 - [Broadcast] pctTime is “Time”, pctLoc is
+“Location”, pctConf is “Confidence”.</p></li>
+<li><p><strong>deltaH</strong> (<em>float</em>) – Terrain irregularity parameter [m].  This is the
+interdecile range of terrain elevation between Tx/Rx sites.  For
+average terrain use 90.  Other recommendations are:
+Flat (or smooth water): 0; Plains: 30; Hills: 90; Mountains:
+200; Rugged Mountains: 500.</p></li>
+<li><p><strong>tht_m</strong> (<em>float</em>) – Transmitter antenna height [m].  The height is
+determined by the center of the radiating element above ground.</p></li>
+<li><p><strong>rht_m</strong> (<em>float</em>) – Receiver antenna height [m].  The height is
+determined by the center of the radiating element above ground.</p></li>
+<li><p><strong>dist_km</strong> (<em>float</em>) – Distance between antennas [km]. The model is valid
+for distances in the range 1km - 2000km.</p></li>
+<li><p><strong>TSiteCriteria</strong> (<em>int</em>) – Tx Antenna deployment sitting criteria:
+0 - random, 1 - careful, 2 - very careful</p></li>
+<li><p><strong>RSiteCriteria</strong> (<em>int</em>) – Rx Antenna deployment sitting criteria:
+0 - random, 1 - careful, 2 - very careful</p></li>
+<li><p><strong>eps_dielect</strong> (<em>float</em>) – Relative Permittivity of the earth</p></li>
+<li><p><strong>sgm_conductivity</strong> (<em>float</em>) – Conductivity of the earth</p></li>
+<li><p><strong>eno_ns_surfref</strong> (<em>float</em>) – Surface Refractivity [250 - 400 N-units]</p></li>
+<li><p><strong>frq_mhz</strong> (<em>float</em>) – Carrier frequency [MHz]; The model is valid for
+frequencies in the range 20MHz - 20GHz</p></li>
+<li><p><strong>radio_climate</strong> (<em>int</em>) – 1-Equatorial, 2-Continental Subtropical,
+3-Maritime Tropical, 4-Desert, 5-Continental
+Temperate, 6-Maritime Temperate, Over Land,
+7-Maritime Temperate, Over Sea</p></li>
+<li><p><strong>pol</strong> (<em>int</em>) – Antenna polarization; 0-Horizontal, 1-Vertical.  It is
+assumed that both antenna elements have the same polarization.</p></li>
+<li><p><strong>pctTime</strong> (<em>float</em>) – Time Reliability Percentage [.01 to .99]</p></li>
+<li><p><strong>pctLoc</strong> (<em>float</em>) – Location Reliability Percentage [.01 to .99]</p></li>
+<li><p><strong>pctConf</strong> (<em>float</em>) – Confidence Interval Percentage [.01 to .99]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>RF propogation loss [dB]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dbloss (float)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyitm.itm.ITMVersion">
+<code class="sig-prename descclassname">pyitm.itm.</code><code class="sig-name descname">ITMVersion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyitm.itm.ITMVersion" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="pyitm.itm.InputError">
+<em class="property">exception </em><code class="sig-prename descclassname">pyitm.itm.</code><code class="sig-name descname">InputError</code><span class="sig-paren">(</span><em class="sig-param">expression</em>, <em class="sig-param">message</em><span class="sig-paren">)</span><a class="headerlink" href="#pyitm.itm.InputError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Custom Exception raised for errors in the input.</p>
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">expression -- input expression in which the error occurred</code></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">message -- explanation of the error</code></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyitm.itm.PropType">
+<em class="property">class </em><code class="sig-prename descclassname">pyitm.itm.</code><code class="sig-name descname">PropType</code><a class="headerlink" href="#pyitm.itm.PropType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to model the prop_type struct</p>
+<dl class="attribute">
+<dt id="pyitm.itm.PropType.aref">
+<code class="sig-name descname">aref</code><a class="headerlink" href="#pyitm.itm.PropType.aref" title="Permalink to this definition">¶</a></dt>
+<dd><p>reference attenuation.  This is calculated in lrprop</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropType.dist">
+<code class="sig-name descname">dist</code><a class="headerlink" href="#pyitm.itm.PropType.dist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Distance between terminals</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropType.hg">
+<code class="sig-name descname">hg</code><a class="headerlink" href="#pyitm.itm.PropType.hg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Heights of the antennas above the ground [Tx, Rx]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropType.wn">
+<code class="sig-name descname">wn</code><a class="headerlink" href="#pyitm.itm.PropType.wn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wave number of the radio frequency</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropType.dh">
+<code class="sig-name descname">dh</code><a class="headerlink" href="#pyitm.itm.PropType.dh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Terrain irregularity parameter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropType.ens">
+<code class="sig-name descname">ens</code><a class="headerlink" href="#pyitm.itm.PropType.ens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Surface Refractivity</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropType.gme">
+<code class="sig-name descname">gme</code><a class="headerlink" href="#pyitm.itm.PropType.gme" title="Permalink to this definition">¶</a></dt>
+<dd><p>Effective curvature of the earth</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropType.zgndreal">
+<code class="sig-name descname">zgndreal</code><a class="headerlink" href="#pyitm.itm.PropType.zgndreal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Surface transfer impedance (real)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropType.zgndimag">
+<code class="sig-name descname">zgndimag</code><a class="headerlink" href="#pyitm.itm.PropType.zgndimag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Surface transfer impedance (imag)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropType.he">
+<code class="sig-name descname">he</code><a class="headerlink" href="#pyitm.itm.PropType.he" title="Permalink to this definition">¶</a></dt>
+<dd><p>Effect antenna heights [Tx, Rx]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropType.dl">
+<code class="sig-name descname">dl</code><a class="headerlink" href="#pyitm.itm.PropType.dl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Horizon distances [Tx, Rx]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropType.the">
+<code class="sig-name descname">the</code><a class="headerlink" href="#pyitm.itm.PropType.the" title="Permalink to this definition">¶</a></dt>
+<dd><p>Horizon elevation angles [Tx, Rx]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropType.kwx">
+<code class="sig-name descname">kwx</code><a class="headerlink" href="#pyitm.itm.PropType.kwx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Error marker code</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropType.mdp">
+<code class="sig-name descname">mdp</code><a class="headerlink" href="#pyitm.itm.PropType.mdp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mode of the propagation model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyitm.itm.PropaType">
+<em class="property">class </em><code class="sig-prename descclassname">pyitm.itm.</code><code class="sig-name descname">PropaType</code><a class="headerlink" href="#pyitm.itm.PropaType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to model the propa_type struct.
+Note that this object is used for internal calculations only</p>
+<dl class="attribute">
+<dt id="pyitm.itm.PropaType.dlsa">
+<code class="sig-name descname">dlsa</code><a class="headerlink" href="#pyitm.itm.PropaType.dlsa" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropaType.dx">
+<code class="sig-name descname">dx</code><a class="headerlink" href="#pyitm.itm.PropaType.dx" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropaType.ael">
+<code class="sig-name descname">ael</code><a class="headerlink" href="#pyitm.itm.PropaType.ael" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropaType.ak1">
+<code class="sig-name descname">ak1</code><a class="headerlink" href="#pyitm.itm.PropaType.ak1" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropaType.ak2">
+<code class="sig-name descname">ak2</code><a class="headerlink" href="#pyitm.itm.PropaType.ak2" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropaType.aed">
+<code class="sig-name descname">aed</code><a class="headerlink" href="#pyitm.itm.PropaType.aed" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropaType.emd">
+<code class="sig-name descname">emd</code><a class="headerlink" href="#pyitm.itm.PropaType.emd" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropaType.aes">
+<code class="sig-name descname">aes</code><a class="headerlink" href="#pyitm.itm.PropaType.aes" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropaType.ems">
+<code class="sig-name descname">ems</code><a class="headerlink" href="#pyitm.itm.PropaType.ems" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropaType.dls">
+<code class="sig-name descname">dls</code><a class="headerlink" href="#pyitm.itm.PropaType.dls" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropaType.dla">
+<code class="sig-name descname">dla</code><a class="headerlink" href="#pyitm.itm.PropaType.dla" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropaType.tha">
+<code class="sig-name descname">tha</code><a class="headerlink" href="#pyitm.itm.PropaType.tha" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyitm.itm.PropvType">
+<em class="property">class </em><code class="sig-prename descclassname">pyitm.itm.</code><code class="sig-name descname">PropvType</code><a class="headerlink" href="#pyitm.itm.PropvType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to model propv_type struct</p>
+<dl class="attribute">
+<dt id="pyitm.itm.PropvType.sgc">
+<code class="sig-name descname">sgc</code><a class="headerlink" href="#pyitm.itm.PropvType.sgc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Standard deviation of the confidence</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropvType.lvar">
+<code class="sig-name descname">lvar</code><a class="headerlink" href="#pyitm.itm.PropvType.lvar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Level to which coefficients in AVAR must be defined</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropvType.mdvar">
+<code class="sig-name descname">mdvar</code><a class="headerlink" href="#pyitm.itm.PropvType.mdvar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mode of variability</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyitm.itm.PropvType.klim">
+<code class="sig-name descname">klim</code><a class="headerlink" href="#pyitm.itm.PropvType.klim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Climate code</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="pyitm.itm.adiff">
+<code class="sig-prename descclassname">pyitm.itm.</code><code class="sig-name descname">adiff</code><span class="sig-paren">(</span><em class="sig-param">d</em>, <em class="sig-param">prop</em>, <em class="sig-param">propa</em><span class="sig-paren">)</span><a class="headerlink" href="#pyitm.itm.adiff" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>d</strong> (<em>float</em>) – distance</p></li>
+<li><p><strong>prop</strong> (<a class="reference internal" href="#pyitm.itm.PropType" title="pyitm.itm.PropType"><em>PropType</em></a>) – </p></li>
+<li><p><strong>propa</strong> (<a class="reference internal" href="#pyitm.itm.PropaType" title="pyitm.itm.PropaType"><em>PropaType</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>adiffv (float)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyitm.itm.alos">
+<code class="sig-prename descclassname">pyitm.itm.</code><code class="sig-name descname">alos</code><span class="sig-paren">(</span><em class="sig-param">d</em>, <em class="sig-param">prop</em>, <em class="sig-param">propa</em><span class="sig-paren">)</span><a class="headerlink" href="#pyitm.itm.alos" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>d</strong> – </p></li>
+<li><p><strong>prop</strong> – </p></li>
+<li><p><strong>propa</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>alosv (float)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyitm.itm.area">
+<code class="sig-prename descclassname">pyitm.itm.</code><code class="sig-name descname">area</code><span class="sig-paren">(</span><em class="sig-param">ModVar</em>, <em class="sig-param">deltaH</em>, <em class="sig-param">tht_m</em>, <em class="sig-param">rht_m</em>, <em class="sig-param">dist_km</em>, <em class="sig-param">TSiteCriteria</em>, <em class="sig-param">RSiteCriteria</em>, <em class="sig-param">eps_dielect</em>, <em class="sig-param">sgm_conductivity</em>, <em class="sig-param">eno_ns_surfref</em>, <em class="sig-param">frq_mhz</em>, <em class="sig-param">radio_climate</em>, <em class="sig-param">pol</em>, <em class="sig-param">pctTime</em>, <em class="sig-param">pctLoc</em>, <em class="sig-param">pctConf</em><span class="sig-paren">)</span><a class="headerlink" href="#pyitm.itm.area" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ModVar</strong> (<em>int</em>) – <dl class="simple">
+<dt>0 - Single: pctConf is “Time/Situation/Location”,</dt><dd><p>pctTime, pctLoc not used</p>
+</dd>
+<dt>1 - Individual: pctTime is “Situation/Location”,</dt><dd><p>pctConf is “Confidence”, pctLoc not used</p>
+</dd>
+<dt>2 - Mobile: pctTime is “Time/Locations (Reliability)”,</dt><dd><p>pctConf is “Confidence”, pctLoc not used</p>
+</dd>
+<dt>3 - Broadcast: pctTime is “Time”, pctLoc is “Location”,</dt><dd><p>pctConf is “Confidence”</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>deltaH</strong> (<em>float</em>) – Terrain irregularity parameter [m].  This is the
+interdecile range of terrain elevation between Tx/Rx sites.  For
+average terrain use 90.  Other recommendations are:
+Flat (or smooth water): 0; Plains: 30; Hills: 90; Mountains:
+200; Rugged Mountains: 500</p></li>
+<li><p><strong>tht_m</strong> (<em>float</em>) – Transmitter antenna height [m].  The height is
+determined by the center of the radiating element above ground.
+[0.5 - 3000]</p></li>
+<li><p><strong>rht_m</strong> (<em>float</em>) – Receiver antenna height [m].  The height is
+determined by the center of the radiating element above ground.
+[0.5 - 3000]</p></li>
+<li><p><strong>dist_km</strong> (<em>float</em>) – Distance between antennas [km]. The model is valid
+for distances in the range 1km - 2000km.</p></li>
+<li><p><strong>TSiteCriteria</strong> (<em>int</em>) – Tx Antenna deployment sitting criteria:
+0 - random, 1 - careful, 2 - very careful</p></li>
+<li><p><strong>RSiteCriteria</strong> (<em>int</em>) – Rx Antenna deployment sitting criteria:
+0 - random, 1 - careful, 2 - very careful</p></li>
+<li><p><strong>eps_dielect</strong> (<em>float</em>) – Relative Permittivity of the earth</p></li>
+<li><p><strong>sgm_conductivity</strong> (<em>float</em>) – Conductivity of the earth</p></li>
+<li><p><strong>eno_ns_surfref</strong> (<em>float</em>) – Surface Refractivity [250 - 400 N-units]</p></li>
+<li><p><strong>frq_mhz</strong> (<em>float</em>) – Carrier frequency [MHz]; The model is valid for
+frequencies in the range 20MHz - 20GHz</p></li>
+<li><p><strong>radio_climate</strong> (<em>int</em>) – 1-Equatorial, 2-Continental Subtropical,
+3-Maritime Tropical, 4-Desert, 5-Continental
+Temperate, 6-Maritime Temperate, Over Land,
+7-Maritime Temperate, Over Sea</p></li>
+<li><p><strong>pol</strong> (<em>int</em>) – Antenna polarization; 0-Horizontal, 1-Vertical.  It is
+assumed that both antenna elements have the same polarization.</p></li>
+<li><p><strong>pctTime</strong> (<em>float</em>) – Time Reliability Percentage [.01 to .99]</p></li>
+<li><p><strong>pctLoc</strong> (<em>float</em>) – Location Reliability Percentage [.01 to .99]</p></li>
+<li><p><strong>pctConf</strong> (<em>float</em>) – Confidence Interval Percentage [.01 to .99]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>RF Propogation loss [dB]
+errnum (int): 0- No Error.</p>
+<blockquote>
+<div><dl class="simple">
+<dt>1- Warning: Some parameters are nearly out of range.</dt><dd><p>Results should be used with caution.</p>
+</dd>
+<dt>2- Note: Default parameters have been substituted for</dt><dd><p>impossible ones.</p>
+</dd>
+<dt>3- Warning: A combination of parameters is out of range.</dt><dd><p>Results are probably invalid.</p>
+</dd>
+</dl>
+</div></blockquote>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dbloss (float)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyitm.itm.ascat">
+<code class="sig-prename descclassname">pyitm.itm.</code><code class="sig-name descname">ascat</code><span class="sig-paren">(</span><em class="sig-param">d</em>, <em class="sig-param">prop</em>, <em class="sig-param">propa</em><span class="sig-paren">)</span><a class="headerlink" href="#pyitm.itm.ascat" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>d</strong> (<em>float</em>) – </p></li>
+<li><p><strong>prop</strong> (<a class="reference internal" href="#pyitm.itm.PropType" title="pyitm.itm.PropType"><em>PropType</em></a>) – </p></li>
+<li><p><strong>propa</strong> (<a class="reference internal" href="#pyitm.itm.PropaType" title="pyitm.itm.PropaType"><em>PropaType</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ascatv (float)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyitm.itm.avar">
+<code class="sig-prename descclassname">pyitm.itm.</code><code class="sig-name descname">avar</code><span class="sig-paren">(</span><em class="sig-param">zzt</em>, <em class="sig-param">zzl</em>, <em class="sig-param">zzc</em>, <em class="sig-param">prop</em>, <em class="sig-param">propv</em><span class="sig-paren">)</span><a class="headerlink" href="#pyitm.itm.avar" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>zzt</strong> (<em>float</em>) – </p></li>
+<li><p><strong>zzl</strong> (<em>float</em>) – </p></li>
+<li><p><strong>zzc</strong> (<em>float</em>) – </p></li>
+<li><p><strong>prop</strong> (<a class="reference internal" href="#pyitm.itm.PropType" title="pyitm.itm.PropType"><em>PropType</em></a>) – </p></li>
+<li><p><strong>propv</strong> (<a class="reference internal" href="#pyitm.itm.PropvType" title="pyitm.itm.PropvType"><em>PropvType</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>avarv (float)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyitm.itm.lrprop">
+<code class="sig-prename descclassname">pyitm.itm.</code><code class="sig-name descname">lrprop</code><span class="sig-paren">(</span><em class="sig-param">d</em>, <em class="sig-param">prop</em>, <em class="sig-param">propa</em><span class="sig-paren">)</span><a class="headerlink" href="#pyitm.itm.lrprop" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>d</strong> (<em>float</em>) – Distance between terminals in meters</p></li>
+<li><p><strong>prop</strong> (<a class="reference internal" href="#pyitm.itm.PropType" title="pyitm.itm.PropType"><em>PropType</em></a>) – PropType instance</p></li>
+<li><p><strong>propa</strong> (<a class="reference internal" href="#pyitm.itm.PropaType" title="pyitm.itm.PropaType"><em>PropaType</em></a>) – PropaType instance</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyitm.itm.qlra">
+<code class="sig-prename descclassname">pyitm.itm.</code><code class="sig-name descname">qlra</code><span class="sig-paren">(</span><em class="sig-param">kst</em>, <em class="sig-param">klimx</em>, <em class="sig-param">mdvarx</em>, <em class="sig-param">prop</em>, <em class="sig-param">propv</em><span class="sig-paren">)</span><a class="headerlink" href="#pyitm.itm.qlra" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kst</strong> (<em>list</em>) – Siting criterion code for each terminal [Tx, Rx]</p></li>
+<li><p><strong>klimx</strong> (<em>int</em>) – Climate code</p></li>
+<li><p><strong>mdvarx</strong> (<em>int</em>) – Mode of variability</p></li>
+<li><p><strong>prop</strong> (<a class="reference internal" href="#pyitm.itm.PropType" title="pyitm.itm.PropType"><em>PropType</em></a>) – prop object</p></li>
+<li><p><strong>propv</strong> (<a class="reference internal" href="#pyitm.itm.PropvType" title="pyitm.itm.PropvType"><em>PropvType</em></a>) – propv object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyitm.itm.qlrps">
+<code class="sig-prename descclassname">pyitm.itm.</code><code class="sig-name descname">qlrps</code><span class="sig-paren">(</span><em class="sig-param">fmhz</em>, <em class="sig-param">zsys</em>, <em class="sig-param">en0</em>, <em class="sig-param">ipol</em>, <em class="sig-param">eps</em>, <em class="sig-param">sgm</em>, <em class="sig-param">prop</em><span class="sig-paren">)</span><a class="headerlink" href="#pyitm.itm.qlrps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to prepare parameters for area prediction mode.  Prior to calling
+this function one should define HG, DH, WN, ENS, GME, ZGND in Prop object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fmhz</strong> (<em>float</em>) – Frequency of signal in MHz</p></li>
+<li><p><strong>zsys</strong> (<em>float</em>) – Avg elevation above sea level of the system; if 0,
+en0 will be interpreted as ENS</p></li>
+<li><p><strong>en0</strong> (<em>float</em>) – Minimum monthly mean surface refractivity reduced to
+sea level; if it is desired to introduce ENS instead,
+then set ZSYS=0.</p></li>
+<li><p><strong>ipol</strong> (<em>int</em>) – Antenna polarization; 0 - horizontal, 1 - vertical</p></li>
+<li><p><strong>eps</strong> (<em>float</em>) – Ground permitivity</p></li>
+<li><p><strong>sgm</strong> (<em>float</em>) – Ground conductance</p></li>
+<li><p><strong>prop</strong> (<a class="reference internal" href="#pyitm.itm.PropType" title="pyitm.itm.PropType"><em>PropType</em></a>) – Prop object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyitm.util">
+<span id="pyitm-util-module"></span><h2>pyitm.util module<a class="headerlink" href="#module-pyitm.util" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyitm.util.abq_alos">
+<code class="sig-prename descclassname">pyitm.util.</code><code class="sig-name descname">abq_alos</code><span class="sig-paren">(</span><em class="sig-param">r</em><span class="sig-paren">)</span><a class="headerlink" href="#pyitm.util.abq_alos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pyitm.util.ahd">
+<code class="sig-prename descclassname">pyitm.util.</code><code class="sig-name descname">ahd</code><span class="sig-paren">(</span><em class="sig-param">td</em><span class="sig-paren">)</span><a class="headerlink" href="#pyitm.util.ahd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pyitm.util.aknfe">
+<code class="sig-prename descclassname">pyitm.util.</code><code class="sig-name descname">aknfe</code><span class="sig-paren">(</span><em class="sig-param">v2</em><span class="sig-paren">)</span><a class="headerlink" href="#pyitm.util.aknfe" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pyitm.util.curve">
+<code class="sig-prename descclassname">pyitm.util.</code><code class="sig-name descname">curve</code><span class="sig-paren">(</span><em class="sig-param">c1</em>, <em class="sig-param">c2</em>, <em class="sig-param">x1</em>, <em class="sig-param">x2</em>, <em class="sig-param">x3</em>, <em class="sig-param">de</em><span class="sig-paren">)</span><a class="headerlink" href="#pyitm.util.curve" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pyitm.util.deg2rad">
+<code class="sig-prename descclassname">pyitm.util.</code><code class="sig-name descname">deg2rad</code><span class="sig-paren">(</span><em class="sig-param">d</em><span class="sig-paren">)</span><a class="headerlink" href="#pyitm.util.deg2rad" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pyitm.util.fht">
+<code class="sig-prename descclassname">pyitm.util.</code><code class="sig-name descname">fht</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">pk</em><span class="sig-paren">)</span><a class="headerlink" href="#pyitm.util.fht" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pyitm.util.fortran_dim">
+<code class="sig-prename descclassname">pyitm.util.</code><code class="sig-name descname">fortran_dim</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="headerlink" href="#pyitm.util.fortran_dim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pyitm.util.h0f">
+<code class="sig-prename descclassname">pyitm.util.</code><code class="sig-name descname">h0f</code><span class="sig-paren">(</span><em class="sig-param">r</em>, <em class="sig-param">et</em><span class="sig-paren">)</span><a class="headerlink" href="#pyitm.util.h0f" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pyitm.util.qerf">
+<code class="sig-prename descclassname">pyitm.util.</code><code class="sig-name descname">qerf</code><span class="sig-paren">(</span><em class="sig-param">z</em><span class="sig-paren">)</span><a class="headerlink" href="#pyitm.util.qerf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pyitm.util.qerfi">
+<code class="sig-prename descclassname">pyitm.util.</code><code class="sig-name descname">qerfi</code><span class="sig-paren">(</span><em class="sig-param">q</em><span class="sig-paren">)</span><a class="headerlink" href="#pyitm.util.qerfi" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-pyitm">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyitm" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Mike DiSanto
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
