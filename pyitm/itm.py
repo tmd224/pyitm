@@ -3,6 +3,10 @@ import cmath
 from pyitm.util import curve, abq_alos, fortran_dim, aknfe, qerfi, fht, h0f, \
     ahd
 
+"""
+This module is an implementation of the NTIA Longley-Rice Irregular Terrain 
+Model.  https://pyitm.readthedocs.io/en/latest/index.html
+"""
 
 # CONSTANTS
 THIRD = 1.0/3.0
