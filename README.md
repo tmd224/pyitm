@@ -7,4 +7,4 @@
 # pyitm: Longley-Rice Irregular Terrain Model
 This is a pure python implementation of the NTIA Longley-Rice Irregular Terrain Model.
 
-Documentation hosted on [Readthedocs](https://www.example.com).
+Documentation hosted on [Readthedocs](https://pyitm.readthedocs.io/en/latest/index.html).
