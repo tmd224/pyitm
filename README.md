@@ -4,5 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/tmd224/pyitm/badge.svg?branch=master)](https://coveralls.io/github/tmd224/pyitm?branch=master&service=github)
 
 
-# pyitm
-Python implementation of the Longley-Rice Irregular Terrain Model
+# pyitm: Longley-Rice Irregular Terrain Model
+This is a pure python implementation of the NTIA Longley-Rice Irregular Terrain Model.
+
+Documentation hosted on [Readthedocs](https://www.example.com).
