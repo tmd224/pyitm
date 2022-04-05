@@ -11,14 +11,14 @@ from pyitm.itm import ITMAreadBLoss
 if __name__ == "__main__":
 
     CONF = 0.90
-    ModVar = 2
+    ModVar = 1
     deltaH = 200.0
     tht_m = 10.0
     rht_m = 1.0
     TSiteCriteria = 1
     RSiteCriteria = 0
-    radio_climate = 5
-    pol = 2
+    radio_climate = 7
+    pol = 1
     pctTime = 0.7
     pctLoc = 0.5
     dist_km = 10.0
@@ -31,4 +31,4 @@ if __name__ == "__main__":
                            TSiteCriteria, RSiteCriteria, EPS, SGM, EN0,
                            frq_mhz, radio_climate, pol, pctTime, pctLoc, CONF)
 
-    print("dbloss: {}dB".format(round(dbloss, 2)))
+    print("Channel Loss: {}dB".format(round(dbloss, 1)))

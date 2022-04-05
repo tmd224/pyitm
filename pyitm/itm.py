@@ -744,7 +744,7 @@ def avar(zzt, zzl, zzc, prop, propv):
         avar.sgtd = avar.sgtp * avar.csd1
         avar.tgtd = (avar.sgtp - avar.sgtd) * avar.zd
         if avar.w1:
-            avar.sg1 = 0.0
+            avar.sgl = 0.0
         else:
             avar.q = (1.0 - 0.8 * math.exp(-prop.dist / 50E3)) * \
                      prop.dh * prop.wn
@@ -788,7 +788,7 @@ def avar(zzt, zzl, zzc, prop, propv):
 
     elif avar.kdv == 1:
         yr = avar.sgt * zt
-        propv.sgc = math.sqrt(avar.sg1 * avar.sgl + vs)
+        propv.sgc = math.sqrt(avar.sgl * avar.sgl + vs)
 
     elif avar.kdv == 2:
         yr = math.sqrt(avar.sgt * avar.sgt + avar.sgl * avar.sgl) * zt
@@ -837,7 +837,7 @@ def area(ModVar, deltaH, tht_m, rht_m, dist_km, TSiteCriteria, RSiteCriteria,
         RSiteCriteria (int): Rx Antenna deployment sitting criteria:
             0 - random, 1 - careful, 2 - very careful
         eps_dielect (float): Relative Permittivity of the earth
-        sgm_conductivity (float): Conductivity of the earth
+        sgm_conductivity (float): Conductivity of the earth [S/m]
         eno_ns_surfref (float): Surface Refractivity [250 - 400 N-units]
         frq_mhz (float): Carrier frequency [MHz]; The model is valid for
             frequencies in the range 20MHz - 20GHz
@@ -888,57 +888,6 @@ def area(ModVar, deltaH, tht_m, rht_m, dist_km, TSiteCriteria, RSiteCriteria,
                          "ITM model is only valid for frequencies 20MHz - "
                          "20GHz")
 
-    if dist_km < 1.0 or dist_km > 2000:
-        raise InputError("dist_km={}km".format(dist_km),
-                         "ITM model is only valid for distances 1km - 2000km")
-
-    if tht_m < 0.5 or tht_m > 3000:
-        raise InputError("tht_m:{}m".format(tht_m),
-                         "ITM model is only valid for antenna heights 0.5m - "
-                         "3000m")
-
-    if rht_m < 0.5 or rht_m > 3000:
-        raise InputError("rht_m:{}m".format(rht_m),
-                         "ITM model is only valid for antenna heights 0.5m - "
-                         "3000m")
-
-    if ipol not in [0, 1]:
-        raise InputError("ipol={}".format(ipol),
-                         "Invalid antenna polarization code {}.  Valid "
-                         "codes: [0, 1]")
-
-    if eno_ns_surfref < 250 or eno_ns_surfref > 400:
-        raise InputError("eno_ns_surfref={}".format(eno_ns_surfref),
-                         "Invalid Surface Refractivity Valid range: ["
-                         "250 - 400")
-
-    if radio_climate not in range(1, 8):
-        raise InputError("radio_climate={}".format(radio_climate),
-                         "Invalid radio climate parameter. "
-                         "Valid values: [{}]".format(range(0, 8)))
-
-    if TSiteCriteria not in range(0, 3):
-        raise InputError("TSiteCriteria={}".format(TSiteCriteria),
-                         "Invalid Tx sitting criterial. Valid values: [{}]"
-                         .format(TSiteCriteria, range(0, 4)))
-
-    if RSiteCriteria not in range(0, 3):
-        raise InputError("RSiteCriteria={}".format(RSiteCriteria),
-                         "Invalid Rx sitting criterial. Valid values: [{}]"
-                         .format(RSiteCriteria, range(0, 4)))
-
-    if pctTime < 0.01 or pctTime > 0.99:
-        raise InputError("pctTime: {}".format(pctTime),
-                         "Invalid pctTime. Valid range: [0.01 - 0.99]")
-
-    if pctLoc < 0.01 or pctLoc > 0.99:
-        raise InputError("pctLoc: {}".format(pctLoc),
-                         "Invalid pctLoc. Valid range: [0.01 - 0.99]")
-
-    if pctConf < 0.01 or pctConf > 0.99:
-        raise InputError("pctConf: {}".format(pctConf),
-                         "Invalid pctConf. Valid range: [0.01 - 0.99]")
-
     qlrps(frq_mhz, 0.0, eno, ipol, eps, sgm, prop)
     # prop.dump()
     qlra(kst, propv.klim, ivar, prop, propv)
@@ -968,13 +917,15 @@ def ITMAreadBLoss(ModVar, deltaH, tht_m, rht_m, dist_km, TSiteCriteria,
     """
 
     Args:
-        ModVar (int): Mode of variability. 0 - [Single] pctConf is
-            "Time/Situation/Location", pctTime, pctLoc not used.  1 - [
-            Individual] pctTime is "Situation/Location", pctConf is
-            "Confidence", pctLoc not used.  2 - [Mobile] pctTime is
-            "Time/Locations (Reliability)", pctConf is "Confidence", pctLoc
-            not used.  3 - [Broadcast] pctTime is "Time", pctLoc is
-            "Location", pctConf is "Confidence".
+        ModVar (int): Model Variability.
+                      0 - Single: pctConf is "Time/Situation/Location",
+                        pctTime, pctLoc not used
+                      1 - Individual: pctTime is "Situation/Location",
+                        pctConf is "Confidence", pctLoc not used
+                      2 - Mobile: pctTime is "Time/Locations (Reliability)",
+                        pctConf is "Confidence", pctLoc not used
+                      3 - Broadcast: pctTime is "Time", pctLoc is "Location",
+                        pctConf is "Confidence"
         deltaH (float): Terrain irregularity parameter [m].  This is the
             interdecile range of terrain elevation between Tx/Rx sites.  For
             average terrain use 90.  Other recommendations are:
@@ -991,7 +942,7 @@ def ITMAreadBLoss(ModVar, deltaH, tht_m, rht_m, dist_km, TSiteCriteria,
         RSiteCriteria (int): Rx Antenna deployment sitting criteria:
             0 - random, 1 - careful, 2 - very careful
         eps_dielect (float): Relative Permittivity of the earth
-        sgm_conductivity (float): Conductivity of the earth
+        sgm_conductivity (float): Conductivity of the earth [S/m]
         eno_ns_surfref (float): Surface Refractivity [250 - 400 N-units]
         frq_mhz (float): Carrier frequency [MHz]; The model is valid for
             frequencies in the range 20MHz - 20GHz
@@ -1008,6 +959,67 @@ def ITMAreadBLoss(ModVar, deltaH, tht_m, rht_m, dist_km, TSiteCriteria,
     Returns:
         dbloss (float): RF propogation loss [dB]
     """
+    # argument checking
+    if frq_mhz < 20 or frq_mhz > 20000:
+        raise InputError("frq_mhz={}MHz".format(frq_mhz),
+                         "ITM model is only valid for frequencies 20MHz - "
+                         "20GHz")
+
+    if dist_km < 1.0 or dist_km > 2000:
+        raise InputError("dist_km={}km".format(dist_km),
+                         "ITM model is only valid for distances 1km - 2000km")
+
+    if tht_m < 0.5 or tht_m > 3000:
+        raise InputError("tht_m:{}m".format(tht_m),
+                         "ITM model is only valid for antenna heights 0.5m - "
+                         "3000m")
+
+    if rht_m < 0.5 or rht_m > 3000:
+        raise InputError("rht_m:{}m".format(rht_m),
+                         "ITM model is only valid for antenna heights 0.5m - "
+                         "3000m")
+
+    if pol not in [0, 1]:
+        raise InputError("pol={}".format(pol),
+                         "Invalid antenna polarization code {}.  Valid "
+                         "codes: [0, 1]")
+
+    if eno_ns_surfref < 250 or eno_ns_surfref > 400:
+        raise InputError("eno_ns_surfref={}".format(eno_ns_surfref),
+                         "Invalid Surface Refractivity Valid range: ["
+                         "250 - 400")
+
+    if radio_climate not in range(1, 8):
+        raise InputError("radio_climate={}".format(radio_climate),
+                         "Invalid radio climate parameter. "
+                         "Valid values: [{}]".format(range(1, 8)))
+
+    if TSiteCriteria not in range(0, 3):
+        raise InputError("TSiteCriteria={}".format(TSiteCriteria),
+                         "Invalid Tx sitting criterial. Valid values: [{}]"
+                         .format(TSiteCriteria, range(0, 4)))
+
+    if RSiteCriteria not in range(0, 3):
+        raise InputError("RSiteCriteria={}".format(RSiteCriteria),
+                         "Invalid Rx sitting criterial. Valid values: [{}]"
+                         .format(RSiteCriteria, range(0, 4)))
+
+    if pctTime < 0.01 or pctTime > 0.99:
+        raise InputError("pctTime: {}".format(pctTime),
+                         "Invalid pctTime. Valid range: [0.01 - 0.99]")
+
+    if pctLoc < 0.01 or pctLoc > 0.99:
+        raise InputError("pctLoc: {}".format(pctLoc),
+                         "Invalid pctLoc. Valid range: [0.01 - 0.99]")
+
+    if pctConf < 0.01 or pctConf > 0.99:
+        raise InputError("pctConf: {}".format(pctConf),
+                         "Invalid pctConf. Valid range: [0.01 - 0.99]")
+
+    if ModVar not in [0, 1, 2, 3]:
+        raise InputError("ModVar: {}".format(ModVar),
+                         "INvalid ModVar.  Valid values: [0, 1, 2, 3]")
+
     dbloss, _ = area(ModVar, deltaH, tht_m, rht_m, dist_km, TSiteCriteria,
                      RSiteCriteria, eps_dielect, sgm_conductivity,
                      eno_ns_surfref, frq_mhz, radio_climate,

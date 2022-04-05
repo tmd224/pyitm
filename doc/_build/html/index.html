@@ -1,66 +1,33 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>pyitm: Longley-Rice Irregular Terrain Model &mdash; pyitm 0.1 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyitm: Longley-Rice Irregular Terrain Model &mdash; pyitm 0.3 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-  
-
-  
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="User Guide" href="user-guide.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="#" class="icon icon-home"> pyitm
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -68,155 +35,100 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="user-guide.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="#">pyitm</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="#">Docs</a> &raquo;</li>
-        
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
       <li>pyitm: Longley-Rice Irregular Terrain Model</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <img alt="https://travis-ci.org/tmd224/pyitm.svg?branch=master" src="https://travis-ci.org/tmd224/pyitm.svg?branch=master" />
 <img alt="https://img.shields.io/badge/license-MIT-red" src="https://img.shields.io/badge/license-MIT-red" />
-<img alt="https://img.shields.io/badge/Python-3.4%2B-blue" src="https://img.shields.io/badge/Python-3.4%2B-blue" />
+<img alt="https://img.shields.io/badge/Python-3.10%2B-blue" src="https://img.shields.io/badge/Python-3.10%2B-blue" />
 <img alt="https://coveralls.io/repos/github/tmd224/pyitm/badge.svg?branch=master" src="https://coveralls.io/repos/github/tmd224/pyitm/badge.svg?branch=master" />
-<div class="section" id="pyitm-longley-rice-irregular-terrain-model">
-<h1>pyitm: Longley-Rice Irregular Terrain Model<a class="headerlink" href="#pyitm-longley-rice-irregular-terrain-model" title="Permalink to this headline">¶</a></h1>
+<img alt="https://badge.fury.io/py/pyitm.svg" src="https://badge.fury.io/py/pyitm.svg" /><img alt="https://readthedocs.org/projects/pyitm/badge/?version=latest" src="https://readthedocs.org/projects/pyitm/badge/?version=latest" />
+<section id="pyitm-longley-rice-irregular-terrain-model">
+<h1>pyitm: Longley-Rice Irregular Terrain Model<a class="headerlink" href="#pyitm-longley-rice-irregular-terrain-model" title="Permalink to this headline"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <p>This is a pure python implementation of the NTIA Longley-Rice Irregular Terrain Model.  This model is a port from the
 C++ <em>[1]</em> model which itself was a port from the original FORTRAN implementation.  <em>pyitm</em> only supports the
 <em>area-prediction</em> mode of the original model and has been validated against the example data sets from NTIA report
 82-100 <em>[2]</em>.</p>
-<div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h2>
 <p><em>pyitm</em> is available on PyPI and can be installed using pip:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyitm</span>
 </pre></div>
 </div>
+<p><strong>Original NTIA Disclaimer:</strong></p>
+<p><em>The ITM software was developed by NTIA. NTIA does not make any warranty of any kind, express, implied or
+statutory, including, without limitation, the implied warranty of merchantability, fitness for a particular purpose,
+non-infringement and data accuracy. NTIA does not warrant or make any representations regarding the use of the software
+or the results thereof, including but not limited to the correctness, accuracy, reliability or usefulness of the
+software or the results. You can use, copy, modify, and redistribute the NTIA-developed software upon your acceptance
+of these terms and conditions and upon your express agreement to provide appropriate acknowledgments of NTIA’s ownership
+of and development of the software by keeping this exact text present in any copied or derivative works. By clicking the
+links on this page to download the software, you acknowledge that you have read this disclaimer.</em></p>
 <p class="rubric">Sources</p>
 <div class="line-block">
 <div class="line"><cite>[1]</cite> <a class="reference external" href="https://www.its.bldrdoc.gov/resources/radio-propagation-software/itm/itm.aspx">https://www.its.bldrdoc.gov/resources/radio-propagation-software/itm/itm.aspx</a></div>
 <div class="line"><cite>[2]</cite> <a class="reference external" href="https://www.ntia.doc.gov/report/1982/guide-use-its-irregular-terrain-model-area-prediction-mode">https://www.ntia.doc.gov/report/1982/guide-use-its-irregular-terrain-model-area-prediction-mode</a></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="user-guide.html" class="btn btn-neutral float-right" title="User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="user-guide.html" class="btn btn-neutral float-right" title="User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019, Mike DiSanto
-
-    </p>
+    <p>&#169; Copyright 2019, Mike DiSanto.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

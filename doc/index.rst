@@ -5,9 +5,11 @@
 
 .. image:: https://travis-ci.org/tmd224/pyitm.svg?branch=master
 .. image:: https://img.shields.io/badge/license-MIT-red
-.. image:: https://img.shields.io/badge/Python-3.4%2B-blue
+.. image:: https://img.shields.io/badge/Python-3.10%2B-blue
 .. image:: https://coveralls.io/repos/github/tmd224/pyitm/badge.svg?branch=master
 .. image:: https://badge.fury.io/py/pyitm.svg
+.. image:: https://readthedocs.org/projects/pyitm/badge/?version=latest
+
 
 
 pyitm: Longley-Rice Irregular Terrain Model

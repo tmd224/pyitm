@@ -1,67 +1,34 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>User Guide &mdash; pyitm 0.1 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Guide &mdash; pyitm 0.3 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-  
-
-  
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="API" href="api.html" />
     <link rel="prev" title="pyitm: Longley-Rice Irregular Terrain Model" href="index.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> pyitm
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -69,86 +36,62 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#system-parameters">System Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#frequency">Frequency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#distance">Distance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#antenna-heights-rht-m-tht-m">Antenna Heights (rht_m, tht_m)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#polarization">Polarization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#environmental-parameters">Environmental Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#terrain-irregularity-parameter-deltah">Terrain Irregularity Parameter (deltaH)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#electrical-ground-constants-eps-sgm">Electrical Ground Constants (EPS, SGM)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#surface-refractivity-and-climate">Surface Refractivity and Climate</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#deployment-parameters">Deployment Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#siting-criteria">Siting Criteria</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#statistical-parameters">Statistical Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#time-location-and-confidence">Time, Location, and confidence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#model-variability">Model variability</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">pyitm</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
       <li>User Guide</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="_sources/user-guide.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="user-guide">
-<h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="user-guide">
+<h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline"></a></h1>
 <p>Interaction with the model is accomplished by invoking the <code class="docutils literal notranslate"><span class="pre">ITMAreadBLoss()</span></code> function with the appropriate
 arguments.  Refer to the <a class="reference internal" href="api.html"><span class="doc">API</span></a> for a description of the arguments.</p>
 <p>Here is a simple example:</p>
@@ -180,55 +123,257 @@ arguments.  Refer to the <a class="reference internal" href="api.html"><span cla
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;dbloss: </span><span class="si">{}</span><span class="s2">dB&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">dbloss</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
 </pre></div>
 </div>
+<section id="system-parameters">
+<h2>System Parameters<a class="headerlink" href="#system-parameters" title="Permalink to this headline"></a></h2>
+<section id="frequency">
+<h3>Frequency<a class="headerlink" href="#frequency" title="Permalink to this headline"></a></h3>
+<p>The model is valid for frequencies between 20MHz and 20GHz.  Frequency parameter is expressed in units of MHz.</p>
+</section>
+<section id="distance">
+<h3>Distance<a class="headerlink" href="#distance" title="Permalink to this headline"></a></h3>
+<p>The model is valid for distances between 1km and 2000km.  The distance parameter is expressed in km and represents
+the <a class="reference external" href="https://en.wikipedia.org/wiki/Great-circle_distance">great circle distance</a> between the transmit and received antenna.</p>
+</section>
+<section id="antenna-heights-rht-m-tht-m">
+<h3>Antenna Heights (rht_m, tht_m)<a class="headerlink" href="#antenna-heights-rht-m-tht-m" title="Permalink to this headline"></a></h3>
+<p>The antenna heigh parameters are expressed in m and represent the center of the radiation above the ground.
+The model is valid for antenna heights in the range 0.5-3000m.</p>
+</section>
+<section id="polarization">
+<h3>Polarization<a class="headerlink" href="#polarization" title="Permalink to this headline"></a></h3>
+<p>The model assumes the antenna polarization is the same for both of the receive and transmit antennas.
+The polarization argument must be one of the following values:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 61%" />
+<col style="width: 39%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Polarization</strong></p></td>
+<td><p><strong>Value</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Horizontal</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Vertical</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="environmental-parameters">
+<h2>Environmental Parameters<a class="headerlink" href="#environmental-parameters" title="Permalink to this headline"></a></h2>
+<section id="terrain-irregularity-parameter-deltah">
+<h3>Terrain Irregularity Parameter (deltaH)<a class="headerlink" href="#terrain-irregularity-parameter-deltah" title="Permalink to this headline"></a></h3>
+<p>This parameter is used to characterize the random irregularities in the height of the terrain between the transmit and receive antenna
+should represent the interdecile range of the terrain elevations (top and bottom 10% of values removed).  Suggested values for classes of terrain topography are listed below.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 61%" />
+<col style="width: 39%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Terrain</strong></p></td>
+<td><p><strong>deltaH</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Flat (or smooth water)</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Plains</p></td>
+<td><p>30</p></td>
+</tr>
+<tr class="row-even"><td><p>Hills</p></td>
+<td><p>90</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mountains</p></td>
+<td><p>200</p></td>
+</tr>
+<tr class="row-even"><td><p>Rugged mountains</p></td>
+<td><p>500</p></td>
+</tr>
+</tbody>
+</table>
+<p>Average terrain should use a value of 90.</p>
+</section>
+<section id="electrical-ground-constants-eps-sgm">
+<h3>Electrical Ground Constants (EPS, SGM)<a class="headerlink" href="#electrical-ground-constants-eps-sgm" title="Permalink to this headline"></a></h3>
+<p>Suggested values for the relative permittivity and conductivity of earth are presribed below.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 41%" />
+<col style="width: 31%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Condition</strong></p></td>
+<td><p><strong>Relative Permittivity</strong></p></td>
+<td><p><strong>Conductivity</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Average ground</p></td>
+<td><p>15</p></td>
+<td><p>0.005</p></td>
+</tr>
+<tr class="row-odd"><td><p>Poor ground</p></td>
+<td><p>4</p></td>
+<td><p>0.001</p></td>
+</tr>
+<tr class="row-even"><td><p>Good ground</p></td>
+<td><p>25</p></td>
+<td><p>0.020</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fresh water</p></td>
+<td><p>81</p></td>
+<td><p>0.010</p></td>
+</tr>
+<tr class="row-even"><td><p>Sea water</p></td>
+<td><p>81</p></td>
+<td><p>5.0</p></td>
+</tr>
+</tbody>
+</table>
+<p>For most purposes, use the constants for average ground.</p>
+</section>
+<section id="surface-refractivity-and-climate">
+<h3>Surface Refractivity and Climate<a class="headerlink" href="#surface-refractivity-and-climate" title="Permalink to this headline"></a></h3>
+<p>The surface refractivity represents the normal value of refractivity near the ground (surface) and is measured in N-units (parts per million).
+The model also uses a qualitative radio_climate argument to characterize the atmosphere and its variability in time.  The model recognizes specific
+enumerated climate categories and the associated surface refractivity is given in the table below.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 44%" />
+<col style="width: 35%" />
+<col style="width: 21%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Climate</strong></p></td>
+<td><p><strong>Surface Refractivity (Ns)</strong></p></td>
+<td><p><strong>radio_climate</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Equatorial (Congo)</p></td>
+<td><p>360</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Continental Subtropical (Sudan)</p></td>
+<td><p>320</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>Maritime Subtropical (West Coast of Africa)</p></td>
+<td><p>370</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Desert (Sahara)</p></td>
+<td><p>280</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>Continental Temperate</p></td>
+<td><p>301</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Maritime Temperate, over land</p></td>
+<td><p>320</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>Maritime Temperate, over sea</p></td>
+<td><p>350</p></td>
+<td><p>7</p></td>
+</tr>
+</tbody>
+</table>
+<p>The Surface refractivity value must be in the range 250-400.</p>
+</section>
+</section>
+<section id="deployment-parameters">
+<h2>Deployment Parameters<a class="headerlink" href="#deployment-parameters" title="Permalink to this headline"></a></h2>
+<section id="siting-criteria">
+<h3>Siting Criteria<a class="headerlink" href="#siting-criteria" title="Permalink to this headline"></a></h3>
+<p>The Siting Criteria is a qualitative assessment used for the <em>RSiteCriteria</em> and <em>TSiteCriteria</em> model arguments to describe the quality of antenna deployment.
+The three valid enumerations for siting criteria are listed in the table below.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 61%" />
+<col style="width: 39%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Siting Criteria</strong></p></td>
+<td><p><strong>Value</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Random</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Careful</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>Very Careful</p></td>
+<td><p>2</p></td>
+</tr>
+</tbody>
+</table>
+<p>When most of the terminals are sited on high ground with some effort to locate them where signals appear strong, we say the siting is <em>very careful</em>.  When terminals are located at
+elevated sites but no attempt has been made to specifically select hilltops or other advantaged points where signals are strong, we would classify it as a <em>careful</em> site.  If there is an
+equal chance that the terminal siting could be good or poor, we classify it as <em>random</em>.</p>
+</section>
+</section>
+<section id="statistical-parameters">
+<h2>Statistical Parameters<a class="headerlink" href="#statistical-parameters" title="Permalink to this headline"></a></h2>
+<section id="time-location-and-confidence">
+<h3>Time, Location, and confidence<a class="headerlink" href="#time-location-and-confidence" title="Permalink to this headline"></a></h3>
+<p>There are 3 model arguments that are used to characterize the parameter reliability of the system.  Each of these arguments are expressed as floating point values in the
+range 0.01-0.99 and represent the reliability or confidence interval percentage.</p>
+<ul class="simple">
+<li><p><strong>time</strong>: Percentage of time the system is expected to operate.  Note that this should represent long-term availability and not short term fluctuations in service due to fading.</p></li>
+<li><p><strong>Location</strong>: Percentage of locations in which the receiver is expected to operate</p></li>
+<li><p><strong>Confidence</strong>: Confidence level of the returned channel attenuation values.</p></li>
+</ul>
+</section>
+<section id="model-variability">
+<h3>Model variability<a class="headerlink" href="#model-variability" title="Permalink to this headline"></a></h3>
+<p>This is a brief explanation of the statistical parameters used in the model.  For a more complete discussion on the topic, refer to the ITU documentation referenced at the bottom of the page.
+The model variability argument can take on 1 of 4 enumerated values which dictate how the underlying statistical parameters of the model are treated.  The model considers the 1st order statistics
+to be related to <em>Time</em>, <em>Location</em>, and <em>Situation</em> reliability.  The confidence intervals are related to these individual (or combined) reliability parameters.</p>
+<ul class="simple">
+<li><p><strong>[0] Single Message Mode</strong>: This mode combines all 3 kinds of variability into a one-dimensional random variable.  The <em>time</em> and <em>location</em> reliability percentage arguments are not used in this mode.  The system is only characterized by the confidence level argument.  For example, a system operating in this mode can be described as <em>“There is a 95% probability that the channel attenuation is 87.4dB”</em>.</p></li>
+<li><p><strong>[1] Individual Mode</strong>: This mode combines <em>situation</em> and <em>location</em> variability into a single variable and treats <em>time</em> variability seperately.  The <em>location</em> argument is ignored.  Here, the <em>Time reliability</em> argument means time availability and the confidence measures the combined situation/location variability.  In this mode, you could say something like <em>“For at least 70% of the time, there is a 90% probability that the channel attenuation is 50.7dB”</em>.</p></li>
+<li><p><strong>[2] Mobile Mode</strong>: This mode combines <em>location</em> and <em>time</em> variability since for a mobile node location is a function of time.  The <em>location</em> argument is ignored.  Reliability means Time/location variability and the confidence measures situation variability.  In this mode, you could say <em>“For at least 80% of the time there is a probability that 95% of like situations will have a channel loss of 100.9dB”</em>.</p></li>
+<li><p><strong>[3] Broadcast Mode</strong>:  All 3 kinds of variability are treated seperately.  In this mode, you could say <em>“In 90% of like situation there will be at least 70% of the locations where the attenuation will not exceed 32.6dB for at least 95% of the time”</em>.</p></li>
+</ul>
+<p class="rubric">Sources</p>
+<div class="line-block">
+<div class="line"><cite>[1]</cite> <a class="reference external" href="https://www.ntia.doc.gov/report/1982/guide-use-its-irregular-terrain-model-area-prediction-mode">https://www.ntia.doc.gov/report/1982/guide-use-its-irregular-terrain-model-area-prediction-mode</a></div>
 </div>
+</section>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="api.html" class="btn btn-neutral float-right" title="API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="index.html" class="btn btn-neutral float-left" title="pyitm: Longley-Rice Irregular Terrain Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="pyitm: Longley-Rice Irregular Terrain Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api.html" class="btn btn-neutral float-right" title="API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019, Mike DiSanto
-
-    </p>
+    <p>&#169; Copyright 2019, Mike DiSanto.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

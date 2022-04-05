@@ -3,6 +3,7 @@
 ![Python](https://img.shields.io/badge/Python-3.4%2B-blue)
 [![Coverage Status](https://coveralls.io/repos/github/tmd224/pyitm/badge.svg?branch=master)](https://coveralls.io/github/tmd224/pyitm?branch=master&service=github)
 [![PyPI version](https://badge.fury.io/py/pyitm.svg)](https://badge.fury.io/py/pyitm)
+[![Documentation Status](https://readthedocs.org/projects/pyitm/badge/?version=latest)](https://pyitm.readthedocs.io/en/latest/?badge=latest)
 
 # pyitm: Longley-Rice Irregular Terrain Model
 This is a pure python implementation of the NTIA Longley-Rice Irregular Terrain Model.

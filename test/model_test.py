@@ -290,7 +290,7 @@ def test_antenna_height_exception():
 
 def test_polarization_exception():
     """
-    Test invalid distance
+    Test invalid polarization
     """
     CONF = 0.90
     ModVar = 2
@@ -314,7 +314,7 @@ def test_polarization_exception():
 
 def test_surface_refractivity_exception():
     """
-    Test invalid distance
+    Test invalid surface refractivity
     """
     CONF = 0.90
     ModVar = 2
@@ -345,7 +345,7 @@ def test_surface_refractivity_exception():
 
 def test_climate_exception():
     """
-    Test invalid distance
+    Test invalid climate
     """
     CONF = 0.90
     ModVar = 2
@@ -369,7 +369,7 @@ def test_climate_exception():
 
 def test_site_criteria_exception():
     """
-    Test invalid distance
+    Test invalid site criteria
     """
     CONF = 0.90
     ModVar = 2
@@ -396,3 +396,127 @@ def test_site_criteria_exception():
                   dist_km, TSiteCriteria, RSiteCriteria, EPS, SGM, EN0,
                   frq_mhz, radio_climate, pol, pctTime, pctLoc,
                   CONF)
+
+def test_modvar_exception():
+    """
+    Test invalid modVar
+    """
+    CONF = 0.90
+    ModVar = 5
+    deltaH = 200.0
+    tht_m = 10.0
+    rht_m = 1.0
+    pctTime = 0.7
+    pctLoc = 0.5
+    dist_km = 0.5
+    frq_mhz = 100.0
+    pol = 1
+    radio_climate = 1
+
+    TSiteCriteria = 0
+    RSiteCriteria = 0
+    pytest.raises(InputError, ITMAreadBLoss,ModVar, deltaH, tht_m, rht_m,
+                  dist_km, TSiteCriteria, RSiteCriteria, EPS, SGM, EN0,
+                  frq_mhz, radio_climate, pol, pctTime, pctLoc,
+                  CONF)
+
+
+def test_reliability_exception():
+    """
+    Test invalid reliability parameters
+    """
+    CONF = 0.90
+    ModVar = 2
+    deltaH = 200.0
+    tht_m = 10.0
+    rht_m = 1.0
+    dist_km = 0.5
+    frq_mhz = 100.0
+    pol = 1
+    radio_climate = 1
+    TSiteCriteria = 0
+    RSiteCriteria = 0
+
+    pctTime = 1.1
+    pctLoc = 0.5
+    pytest.raises(InputError, ITMAreadBLoss,ModVar, deltaH, tht_m, rht_m,
+                  dist_km, TSiteCriteria, RSiteCriteria, EPS, SGM, EN0,
+                  frq_mhz, radio_climate, pol, pctTime, pctLoc,
+                  CONF)     
+
+    pctTime = 0.0
+    pctLoc = 0.5
+    pytest.raises(InputError, ITMAreadBLoss,ModVar, deltaH, tht_m, rht_m,
+                  dist_km, TSiteCriteria, RSiteCriteria, EPS, SGM, EN0,
+                  frq_mhz, radio_climate, pol, pctTime, pctLoc,
+                  CONF)                               
+
+    pctTime = 0.9
+    pctLoc = 1.1
+    pytest.raises(InputError, ITMAreadBLoss,ModVar, deltaH, tht_m, rht_m,
+                  dist_km, TSiteCriteria, RSiteCriteria, EPS, SGM, EN0,
+                  frq_mhz, radio_climate, pol, pctTime, pctLoc,
+                  CONF)                      
+
+    pctTime = 0.9
+    pctLoc = 0.0
+    pytest.raises(InputError, ITMAreadBLoss,ModVar, deltaH, tht_m, rht_m,
+                  dist_km, TSiteCriteria, RSiteCriteria, EPS, SGM, EN0,
+                  frq_mhz, radio_climate, pol, pctTime, pctLoc,
+                  CONF)                     
+
+
+def test_modvar():
+    CONF = 0.90
+    deltaH = 200.0
+    tht_m = 10.0
+    rht_m = 1.0
+    TSiteCriteria = 1
+    RSiteCriteria = 0
+    radio_climate = 5
+    pol = 1
+    pctTime = 0.7
+    pctLoc = 0.5
+    dist_km = 10.0
+    frq_mhz = 100.0
+    EPS = 15.0
+    SGM = 0.005
+    EN0 = 301.0
+
+    MODVAR = [0, 1, 2, 3]
+    RESULT = [142, 142.1, 141.0, 136.2]
+    for idx, modvar in enumerate(MODVAR):
+        dbloss = ITMAreadBLoss(modvar, deltaH, tht_m, rht_m,
+                    dist_km, TSiteCriteria, RSiteCriteria, EPS, SGM, EN0,
+                    frq_mhz, radio_climate, pol, pctTime, pctLoc,
+                    CONF)
+    
+        assert round(dbloss, 1) == RESULT[idx]            
+
+def test_climate():
+    CONF = 0.90
+    modvar = 1
+    deltaH = 200.0
+    tht_m = 10.0
+    rht_m = 1.0
+    TSiteCriteria = 1
+    RSiteCriteria = 0
+    radio_climate = 5
+    pol = 1
+    pctTime = 0.7
+    pctLoc = 0.5
+    dist_km = 10.0
+    frq_mhz = 100.0
+    EPS = 15.0
+    SGM = 0.005
+    EN0 = 301.0
+
+    CLIMATE = range(1, 8)
+    RESULT = [142.1, 142.1, 142.0, 142.2, 142.1, 142.0, 142.0]
+    for idx, radio_climate in enumerate(CLIMATE):
+        dbloss = ITMAreadBLoss(modvar, deltaH, tht_m, rht_m,
+                    dist_km, TSiteCriteria, RSiteCriteria, EPS, SGM, EN0,
+                    frq_mhz, radio_climate, pol, pctTime, pctLoc,
+                    CONF)
+    
+        assert round(dbloss, 1) == RESULT[idx]           

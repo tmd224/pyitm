@@ -6,12 +6,12 @@ def readme():
         return f.read()
 
 setup(name='pyitm',
-      version='0.2',
+      version='0.3',
       description='Longley-Rice Irregular Terrain Model',
       long_description=readme(),
       long_description_content_type='text/markdown',
       url='https://github.com/tmd224/pyitm',
-      download_url='https://github.com/tmd224/pyitm/archive/v0.2.tar.gz',
+      download_url='https://github.com/tmd224/pyitm/archive/v0.3.tar.gz',
       author='Mike DiSanto',
       author_email='tmdisanto@gmail.com',
       license='MIT',

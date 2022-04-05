@@ -1,66 +1,33 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>API &mdash; pyitm 0.1 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API &mdash; pyitm 0.3 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-  
-
-  
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="User Guide" href="user-guide.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> pyitm
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -68,100 +35,59 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="user-guide.html">User Guide</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">pyitm</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
       <li>API</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="api">
-<h1>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="api">
+<h1>API<a class="headerlink" href="#api" title="Permalink to this headline"></a></h1>
 <p>API documentation</p>
-<span class="target" id="module-pyitm.itm"></span><dl class="function">
-<dt id="pyitm.itm.ITMAreadBLoss">
-<code class="sig-prename descclassname">pyitm.itm.</code><code class="sig-name descname">ITMAreadBLoss</code><span class="sig-paren">(</span><em class="sig-param">ModVar</em>, <em class="sig-param">deltaH</em>, <em class="sig-param">tht_m</em>, <em class="sig-param">rht_m</em>, <em class="sig-param">dist_km</em>, <em class="sig-param">TSiteCriteria</em>, <em class="sig-param">RSiteCriteria</em>, <em class="sig-param">eps_dielect</em>, <em class="sig-param">sgm_conductivity</em>, <em class="sig-param">eno_ns_surfref</em>, <em class="sig-param">frq_mhz</em>, <em class="sig-param">radio_climate</em>, <em class="sig-param">pol</em>, <em class="sig-param">pctTime</em>, <em class="sig-param">pctLoc</em>, <em class="sig-param">pctConf</em><span class="sig-paren">)</span><a class="headerlink" href="#pyitm.itm.ITMAreadBLoss" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="module-pyitm.itm"></span><dl class="py function">
+<dt class="sig sig-object py" id="pyitm.itm.ITMAreadBLoss">
+<span class="sig-prename descclassname"><span class="pre">pyitm.itm.</span></span><span class="sig-name descname"><span class="pre">ITMAreadBLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ModVar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deltaH</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tht_m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rht_m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist_km</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TSiteCriteria</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">RSiteCriteria</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps_dielect</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sgm_conductivity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eno_ns_surfref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frq_mhz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radio_climate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pctTime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pctLoc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pctConf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyitm.itm.ITMAreadBLoss" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ModVar</strong> (<em>int</em>) – Mode of variability. 0 - [Single] pctConf is
-“Time/Situation/Location”, pctTime, pctLoc not used.  1 - [
-Individual] pctTime is “Situation/Location”, pctConf is
-“Confidence”, pctLoc not used.  2 - [Mobile] pctTime is
-“Time/Locations (Reliability)”, pctConf is “Confidence”, pctLoc
-not used.  3 - [Broadcast] pctTime is “Time”, pctLoc is
-“Location”, pctConf is “Confidence”.</p></li>
+<li><p><strong>ModVar</strong> (<em>int</em>) – <p>Model Variability.
+0 - Single: pctConf is “Time/Situation/Location”,</p>
+<blockquote>
+<div><p>pctTime, pctLoc not used</p>
+</div></blockquote>
+<dl class="simple">
+<dt>1 - Individual: pctTime is “Situation/Location”,</dt><dd><p>pctConf is “Confidence”, pctLoc not used</p>
+</dd>
+<dt>2 - Mobile: pctTime is “Time/Locations (Reliability)”,</dt><dd><p>pctConf is “Confidence”, pctLoc not used</p>
+</dd>
+<dt>3 - Broadcast: pctTime is “Time”, pctLoc is “Location”,</dt><dd><p>pctConf is “Confidence”</p>
+</dd>
+</dl>
+</p></li>
 <li><p><strong>deltaH</strong> (<em>float</em>) – Terrain irregularity parameter [m].  This is the
 interdecile range of terrain elevation between Tx/Rx sites.  For
 average terrain use 90.  Other recommendations are:
@@ -178,7 +104,7 @@ for distances in the range 1km - 2000km.</p></li>
 <li><p><strong>RSiteCriteria</strong> (<em>int</em>) – Rx Antenna deployment sitting criteria:
 0 - random, 1 - careful, 2 - very careful</p></li>
 <li><p><strong>eps_dielect</strong> (<em>float</em>) – Relative Permittivity of the earth</p></li>
-<li><p><strong>sgm_conductivity</strong> (<em>float</em>) – Conductivity of the earth</p></li>
+<li><p><strong>sgm_conductivity</strong> (<em>float</em>) – Conductivity of the earth [S/m]</p></li>
 <li><p><strong>eno_ns_surfref</strong> (<em>float</em>) – Surface Refractivity [250 - 400 N-units]</p></li>
 <li><p><strong>frq_mhz</strong> (<em>float</em>) – Carrier frequency [MHz]; The model is valid for
 frequencies in the range 20MHz - 20GHz</p></li>
@@ -202,53 +128,36 @@ assumed that both antenna elements have the same polarization.</p></li>
 </dl>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-      
-        <a href="user-guide.html" class="btn btn-neutral float-left" title="User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="user-guide.html" class="btn btn-neutral float-left" title="User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019, Mike DiSanto
-
-    </p>
+    <p>&#169; Copyright 2019, Mike DiSanto.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
